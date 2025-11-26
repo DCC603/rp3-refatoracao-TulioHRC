@@ -3,10 +3,7 @@ import java.util.List;
 
 public class Conta {
 
-    // TODO(#1) REFATORAR: Esses dados deveriam ficar em outro lugar
-    private String nomeCliente;
-    private String cpfCliente;
-    private String telefoneCliente;
+    private Cliente cliente;
 
     // TODO(#1) REFATORAR: Esses dados deveriam ficar em outro lugar
     private int numAgencia;
@@ -19,9 +16,7 @@ public class Conta {
     private List<Operacao> operacoes;
 
     public Conta(String nomeCliente, String cpfCliente, String telefoneCliente, int numAgencia, int numConta, String gerente, double valor) {
-        this.nomeCliente = nomeCliente;
-        this.cpfCliente = cpfCliente;
-        this.telefoneCliente = telefoneCliente;
+        this.cliente = new Cliente(nomeCliente, cpfCliente, telefoneCliente);
         this.numAgencia = numAgencia;
         this.numConta = numConta;
         this.gerente = gerente;
@@ -46,10 +41,6 @@ public class Conta {
     }
 
     public String toString() {
-        // TODO(#4) REFATORAR: Esses dados não estão relacionados a conta
-        String dadosCliente = String.format("CPF: %s\nNome: %s\nTelefone: %s",
-                this.cpfCliente, this.nomeCliente, this.telefoneCliente);
-
         // TODO(#4) REFATORAR: Esses dados não estão relacinados a conta
         String dadosConta = String.format("Ag.: %d\nConta: %d\nGerente: %s\nSaldo: %.2f",
                 this.numAgencia, this.numConta, this.gerente, this.valor);
@@ -61,7 +52,7 @@ public class Conta {
         }
 
         return "-----CLIENTE-----\n" +
-                dadosCliente +
+                this.cliente +
                 "\n\n" +
                 "-----CONTA-----\n" +
                 dadosConta +
