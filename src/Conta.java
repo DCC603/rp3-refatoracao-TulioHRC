@@ -39,24 +39,33 @@ public class Conta {
             this.saldo -= valor;
     }
 
-    public String toString() {
-        String dadosConta = String.format("Ag.: %d\nConta: %d\nGerente: %s\nSaldo: %.2f",
-                this.agencia.getNumAgencia(), this.numConta, this.agencia.getGerente(), this.saldo);
+    private String getDadosCliente () {
+        return this.cliente + "";
+    }
 
-        // TODO(#5) REFATORAR: Essa operação não deveria estar sendo realizada neste método
+    private String getDadosConta () {
+        return String.format("Ag.: %d\nConta: %d\nGerente: %s\nSaldo: %.2f",
+                this.agencia.getNumAgencia(), this.numConta, this.agencia.getGerente(), this.saldo);
+    }
+
+    private String getDadosExtrato () {
         String dadosExtrato = "";
         for(Operacao op : this.operacoes) {
             dadosExtrato += op.toString() + "\n";
         }
 
+        return dadosExtrato;
+    }
+
+    public String toString() {
         return "-----CLIENTE-----\n" +
-                this.cliente +
+                this.getDadosCliente() +
                 "\n\n" +
                 "-----CONTA-----\n" +
-                dadosConta +
+                this.getDadosConta() +
                 "\n\n" +
                 "-----EXTRATO-----\n" +
-                dadosExtrato +
+                this.getDadosExtrato() +
                 "\n";
     }
 }
