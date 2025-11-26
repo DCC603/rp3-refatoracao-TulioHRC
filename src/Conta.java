@@ -4,7 +4,7 @@ import java.util.List;
 public class Conta {
 
     private int numConta;
-    
+
     private Cliente cliente;
     private Agencia agencia;
 
@@ -26,14 +26,14 @@ public class Conta {
     }
 
     // TODO(#3) REFATORAR: Muita responsabilidade para o mesmo método
-    public void realizarOperacao(char tipo, int saldo) {
-        Operacao op = new Operacao(tipo, saldo);
+    public void realizarOperacao(char tipo, int valor) {
+        Operacao op = new Operacao(tipo, valor);
         this.operacoes.add(op);
 
         if (tipo == 'd')
-            this.saldo += saldo;
+            this.saldo += valor;
         else if(tipo == 's')
-            this.saldo -= saldo;
+            this.saldo -= valor;
     }
 
     public String toString() {
